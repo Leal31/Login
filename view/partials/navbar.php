@@ -11,11 +11,10 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Departamento
+            Cerrar Sesion
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="<?php echo getUrl("Departamento","Departamento","getInsert"); ?>">Registrar</a></li>
-            <li><a class="dropdown-item" href="<?php echo getUrl("Departamento","Departamento","consult"); ?>">Consultar</a></li>
+            <li><a class="dropdown-item" href="<?php echo getUrl("Login", "Login", "cerrarSesion"); ?>">CerrarSesion</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

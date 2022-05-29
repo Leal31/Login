@@ -4,24 +4,34 @@ include_once '../model/Login/LoginModel.php';
 class LoginController  {
   function validar() {
     $obj = new LoginModel();
-    
+    $usuEncontrado = false;
+    $credCorrectas = false;
     $documento = $_POST['usuario'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM usuarios WHERE usu_id=$documento AND usu_clave='$password'";
+    $sql = "SELECT * FROM usuarios";
 
     $usuario = $obj -> sentencia($sql);
 
-    if ($usuario) {
-      foreach ($usuario as $usu) {
-	if ($documento == $usu['usu_id'] and $password == $usu['usu_clave']) {
-	  $_SESSION['documento'] = $documento;
-	  redirect(getUrl('Login', 'Login', 'home'));
+    foreach ($usuario as $usu) {
+      if ($documento == $usu['usu_id']) {
+	$usuEncontrado = true;
+	if ($password == $usu['usu_clave']) {
+	  $credCorrectas = true;
+	  break;
 	} else {
-	 echo "Credenciales erroneas";
+	  break;
 	}
-    }} else {
-      echo "Hubo un error";
+      }
+    }
+    
+    if ($usuEncontrado == true and $credCorrectas == true) {
+      $_SESSION['documento'] = $documento;
+      redirect(getUrl('Login', 'Login', 'home'));
+    } else if ($usuEncontrado == true and $credCorrectas == false) {
+      echo "<script> alert('Credenciales incorrectas'); </script>";
+    } else if ($usuEncontrado == false and $credCorrectas == false) {
+      echo "<script> alert('Usuario inexistente'); </script>";
     }
  }
 

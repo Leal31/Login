@@ -28,7 +28,7 @@
             if(!$this->link){
                 echo mysqli_error($this->link);
             } else {
-                echo "Conexion Exitosa";
+                //echo "Conexion Exitosa";
             }
         }
         /* Funcion para obtener la conexion
